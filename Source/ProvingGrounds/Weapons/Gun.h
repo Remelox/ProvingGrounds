@@ -11,9 +11,9 @@ class AGun : public AActor
 {
 	GENERATED_BODY()
 
-		/** Gun mesh: 1st person view (seen only by self) */
-		UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-		class USkeletalMeshComponent* FP_Gun;
+	/** Gun mesh: 1st person view (seen only by self) */
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	class USkeletalMeshComponent* FP_Gun;
 
 	/** Location on gun mesh where projectiles should spawn. */
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
@@ -37,17 +37,22 @@ class AGun : public AActor
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		TSubclassOf<class AGun> GunBlueprint;
+	/** Pawn mesh: 1st person view (arms; seen only by self) */
+
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+		class USkeletalMeshComponent* Mesh1P;
 
 public:
 	// Sets default values for this actor's properties
 	AGun();
 
+	/** Fires a projectile. */
+	void OnFire();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	/** Fires a projectile. */
-	void OnFire();
 
 public:
 	// Called every frame
